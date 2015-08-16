@@ -9,10 +9,12 @@ class BuyOneGetOneFreeRule < BaseRule
     @codes.each do |code|
       matchCount = 0
       products.each do |product|
-        matchCount += 1
-        if(matchCount == 2)
-          current_total -= product.price
-          matchCount = 0
+        if(product.code == code)
+          matchCount += 1
+          if(matchCount == 2)
+            current_total -= product.price
+            matchCount = 0
+          end
         end
       end
     end

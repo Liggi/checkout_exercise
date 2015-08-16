@@ -37,7 +37,7 @@ describe BuyOneGetOneFreeRule do
     context "when two applicable items are in checkout" do
       before :each do
         @product = Product.new("product_1", 1.99)
-        @rule = BuyOneGetOneFreeRule.new(@product)
+        @rule = BuyOneGetOneFreeRule.new("product_1")
       end
 
       it "cuts the price in half" do
@@ -54,7 +54,7 @@ describe BuyOneGetOneFreeRule do
     context "when three applicable items are in checkout" do
       before :each do
         @product = Product.new("product_1", 2.99)
-        @rule = BuyOneGetOneFreeRule.new(@product)
+        @rule = BuyOneGetOneFreeRule.new("product_1")
       end
 
       it "removes the price of one from the total" do

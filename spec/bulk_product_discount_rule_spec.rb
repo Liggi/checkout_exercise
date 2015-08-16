@@ -12,21 +12,21 @@ describe BulkProductDiscountRule do
 
   describe ".apply" do
     before :each do
-      @product = Product.new("product_1", 5.99)
+      @product = Product.new("product_1", 5.00)
       @thresholds = { "product_1" => 3 }
-      @alternate_prices = { "product_1" => 4.99 }
-      @rule = BulkProductDiscountRule.new("product_1", @threshold, @alternate_prices)
+      @discount_percentages = { "product_1" => 10 }
+      @rule = BulkProductDiscountRule.new("product_1", @thresholds, @discount_percentages)
     end
 
     context "when threshold for bulk discount is reached" do
-      it "changes the item price to the alternate price" do
+      it "changes the item price to the discounted price" do
         @checkout = Checkout.new
         @checkout.scan(@product)
         @checkout.scan(@product)
         @checkout.scan(@product)
 
         total = @rule.apply(@checkout.items, @checkout.total)
-        expect(total).to equal(@alternate_prices["product_1"] * 3)
+        expect(total).to equal((@product.price * 3) - ((@product.price * 3) * @discount_percentages[@product.code] / 100))
       end
     end
   end
