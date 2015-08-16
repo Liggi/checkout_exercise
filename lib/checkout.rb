@@ -6,6 +6,6 @@ class Checkout
   end
 
   def scan(product_code)
-
+    @items << product_code unless product_code.empty?
   end
 end

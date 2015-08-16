@@ -21,6 +21,13 @@ describe Checkout do
       end
     end
 
+    context "given a product code" do
+      it "has a matching item" do
+        @checkout.scan("product_1")
+        expect(@checkout.items).to include("product_1")
+      end
+    end
+
   end
 
 end
