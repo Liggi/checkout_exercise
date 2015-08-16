@@ -6,7 +6,10 @@ class Checkout
     @total = 0.00
   end
 
-  def scan(product_code)
-    @items << product_code unless product_code.empty?
+  def scan(product)
+    unless product.nil? || !product.is_valid?
+      @items << product unless product.nil? || !product.is_valid?
+      @total += product.price
+    end
   end
 end

@@ -1,4 +1,5 @@
 require 'checkout'
+require 'product'
 
 describe Checkout do
 
@@ -29,24 +30,28 @@ describe Checkout do
       end
     end
 
-    context "given an empty string" do
+    context "given nil" do
       it "has no items" do
-        @checkout.scan("")
+        @checkout.scan(nil)
         expect(@checkout.items).to be_empty
       end
     end
 
-    context "given a product code" do
+    context "given a product" do
       it "has a matching item" do
-        @checkout.scan("product_1")
-        expect(@checkout.items).to include("product_1")
+        @product = Product.new("product_1", 1.99)
+        @checkout.scan(@product)
+        expect(@checkout.items).to include(@product)
       end
 
       it "contains all scanned items" do
-        @checkout.scan("product_1")
-        @checkout.scan("product_2")
-        @checkout.scan("product_3")
-        expect(@checkout.items).to include("product_1") && include("product_2") && include("product_3")
+        @product1 = Product.new("product_1", 1.99)
+        @product2 = Product.new("product_2", 1.99)
+        @product3 = Product.new("product_3", 1.99)
+        @checkout.scan(@product1)
+        @checkout.scan(@product2)
+        @checkout.scan(@product3)
+        expect(@checkout.items).to include(@product1) && include(@product2) && include(@product3)
       end
     end
 

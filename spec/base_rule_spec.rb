@@ -4,7 +4,7 @@ describe BaseRule do
   describe ".apply" do
     context "when created" do
       before :each do
-        @base_rule = BaseRule.new
+        @base_rule = BaseRule.new("")
       end
 
       it "implements an apply method" do
@@ -13,14 +13,9 @@ describe BaseRule do
 
       it "returns the current total, unchanged" do
         @checkout = Checkout.new
-        @prices = {
-          "product_1" => 1.99,
-          "product_2" => 7.43
-        }
 
-        total_pre_rule = @checkout.total
-        @base_rule.apply(@checkout, @prices)
-        expect(@checkout.total).to equal(total_pre_rule)
+        total = @base_rule.apply(@checkout.items, @checkout.total)
+        expect(total).to equal(@checkout.total)
       end
     end
   end
