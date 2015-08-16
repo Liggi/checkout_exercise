@@ -2,7 +2,7 @@ require 'base_rule'
 
 describe BaseRule do
   describe ".apply" do
-    context "with a newly created base rule" do
+    context "when created" do
       before :each do
         @base_rule = BaseRule.new
       end

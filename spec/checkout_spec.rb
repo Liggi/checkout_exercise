@@ -2,7 +2,7 @@ require 'checkout'
 
 describe Checkout do
 
-  context "creating" do
+  context "when created" do
 
     before :each do
       @checkout = Checkout.new
