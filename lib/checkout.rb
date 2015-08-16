@@ -4,4 +4,8 @@ class Checkout
   def initialize
     @items = Array.new
   end
+
+  def scan(product_code)
+
+  end
 end
