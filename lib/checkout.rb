@@ -1,8 +1,9 @@
 class Checkout
-  attr_reader :items
+  attr_reader :items, :total
 
   def initialize
     @items = Array.new
+    @total = 0.00
   end
 
   def scan(product_code)
