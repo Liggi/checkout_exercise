@@ -1,5 +1,5 @@
 class BaseRule
-  def apply(items, prices)
-
+  def apply(checkout, prices)
+    checkout
   end
 end
